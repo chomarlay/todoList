@@ -61,7 +61,7 @@ public class TodoProjectSpringDataRepositoryTests {
 
 	@Test
 	@DirtiesContext
-//	@Transactional
+	@Transactional
 	public void saveProject() {
 		Optional<Project> projectOptional = projectRepository.findById(10002L);
 		assertTrue(projectOptional.isPresent());
