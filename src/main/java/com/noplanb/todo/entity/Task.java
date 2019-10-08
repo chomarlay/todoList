@@ -2,18 +2,27 @@ package com.noplanb.todo.entity;
 
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.noplanb.todo.audit.Auditable;
+
 @Entity
-public class Task {
+@EntityListeners(AuditingEntityListener.class)
+public class Task extends Auditable<String> {
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String name;
 	
-	@ManyToOne
+	@ManyToOne (fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Project project;
 
 	protected Task() {}
@@ -44,10 +53,7 @@ public class Task {
 		this.project = project;
 	}
 
-	@Override
-	public String toString() {
-		return "Project [name=" + name + "]";
-	}
+
 	
 	
 

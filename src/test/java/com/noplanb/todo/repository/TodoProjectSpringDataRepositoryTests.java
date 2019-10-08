@@ -44,6 +44,17 @@ public class TodoProjectSpringDataRepositoryTests {
 		assertTrue(!projects.isEmpty());
 	}
 	
+	@Test
+	public void findTasksByProjectId() {
+		Project p = projectRepository.findTasksByProjectId(10003L);
+		assertTrue(!p.getTasks().isEmpty());
+	}
+	
+	@Test
+	public void findWithTasks() {
+		Project p = projectRepository.findWithTasks(10003L);
+		assertTrue(!p.getTasks().isEmpty());
+	}
 
 	@Test
 	@DirtiesContext
