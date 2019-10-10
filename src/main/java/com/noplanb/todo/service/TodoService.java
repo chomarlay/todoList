@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.noplanb.todo.entity.Project;
 import com.noplanb.todo.entity.Task;
 import com.noplanb.todo.exception.ProjectNotFoundException;
+import com.noplanb.todo.exception.TaskNotFoundException;
 import com.noplanb.todo.repository.ProjectSpringDataRepository;
 import com.noplanb.todo.repository.TaskSpringDataRepository;
 
@@ -61,13 +62,13 @@ public class TodoService {
 //			throw new ProjectNotFoundException("Project with id " + projectId + " is not found.");
 		}
 	}
-	public void addTaskToProject (Long projectId, Task task) {
+	public Task addTaskToProject (Long projectId, Task task) {
 		
 		Project project = findProjectById(projectId);
-		if (project != null) {
-			List<Task> tasks = project.getTasks();
-			tasks.add(task);
-		}
+		task.setProject(project);
+		taskRepository.save(task);
+		
+		return task;
 	}
 	
 	public List<Task> findTasksByProjectId (Long projectId) {
@@ -86,8 +87,10 @@ public class TodoService {
 		Optional<Task> taskOptional = taskRepository.findById(taskId);
 		if (taskOptional.isPresent()) {
 			return taskOptional.get();
+		}else {
+			throw new TaskNotFoundException("Task with id " + taskId + " is not found.");
 		}
-		return null;
+		
 	}
 	
 	public Task updateTask (Task task) {

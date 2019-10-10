@@ -59,18 +59,11 @@ public class Project extends Auditable<String> {
 		return tasks;
 	}
 
-	public void addTask(Task task) {
-		this.tasks.add(task);
-	}
 	
-	public void removeTask(Task task) {
-		this.tasks.remove(task);
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
 	}
 
-	public void removeAllTasks() {
-		this.tasks = new ArrayList<>();
-	}
-	
 	@Override
 	public String toString() {
 		return "Project [name=" + name + "]";

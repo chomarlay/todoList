@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,4 +51,19 @@ public class TodoController {
 		return ResponseEntity.created(location).build();
 	}
 
+	@PostMapping("/projects/{id}/tasks")
+	public ResponseEntity<Object> createTask(@PathVariable Long id, @Valid @RequestBody Task task) {
+		Task t = todoService.addTaskToProject(id, task);
+		// CREATED
+		// /projects/{id}
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(t.getId()).toUri();
+
+		return ResponseEntity.created(location).build();
+	}
+	
+	@DeleteMapping("/projects/{projectId}/tasks/{taskId}")
+	public void deleteTask(@PathVariable Long projectId, @PathVariable Long taskId) {
+		todoService.deleteTask(taskId);
+	}
 }

@@ -26,6 +26,12 @@ public class NpBResponseEntityExceptionHandler extends ResponseEntityExceptionHa
 	public final ResponseEntity<Object> handleProjectNotFoundException(Exception ex, WebRequest request) {
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
 		return (new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND));
+	}
+	
+	@ExceptionHandler(TaskNotFoundException.class)
+	public final ResponseEntity<Object> handleTaskNotFoundException(Exception ex, WebRequest request) {
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+		return (new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND));
 	}	
 	
 	@Override

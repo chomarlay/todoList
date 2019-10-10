@@ -32,6 +32,9 @@ public class TodoProjectSpringDataRepositoryTests {
 	@Autowired
 	ProjectSpringDataRepository projectRepository;
 	
+	@Autowired
+	TaskSpringDataRepository taskRepository;
+	
 	@Test
 	public void findProjectById() {
 		Optional<Project> projectOptional = projectRepository.findById(10002L);
@@ -63,7 +66,7 @@ public class TodoProjectSpringDataRepositoryTests {
 		Optional<Project> projectOptional = projectRepository.findById(10002L);
 		assertTrue(projectOptional.isPresent());
 		Project project = projectOptional.get();
-		project.removeAllTasks();
+//		project.removeAllTasks();
 		projectRepository.save(project);
 		projectRepository.deleteById(10002L);
 		projectOptional = projectRepository.findById(10002L);
@@ -92,8 +95,12 @@ public class TodoProjectSpringDataRepositoryTests {
 		Optional<Project> projectOptional = projectRepository.findById(10002L);
 		assertTrue(projectOptional.isPresent());
 		Project project = projectOptional.get();
-		project.addTask(new Task("Task 3"));
-		projectRepository.save(project);
+		Task newTask = new Task("Task 3");
+		newTask.setProject(project);
+		taskRepository.save(newTask);
+		taskRepository.flush();
+//		project.addTask(new Task("Task 3"));
+//		projectRepository.save(project);
 		projectOptional = projectRepository.findById(10002L);
 		assertTrue(projectOptional.isPresent());
 		project = projectOptional.get();

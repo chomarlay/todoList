@@ -52,19 +52,19 @@ public class TodoProjectRepositoryTests {
 		assertEquals("Running 2019", project.getName());
 	}
 	
-	@Test
-	@DirtiesContext
-	@Transactional
-	public void addTaskToProject() {
-		projectRepository.addTaskToProject(10003L, new Task("Task 3"));
-		Project project = projectRepository.findById(10003L);
-		List<Task> tasks = project.getTasks();
-		int totalTasks = 0;
-		for (Task task:tasks) {
-			Logger.info("Task - " + task.getName());
-			totalTasks++;
-		}
-		assertEquals(3, totalTasks );
-		
-	}
+//	@Test
+//	@DirtiesContext
+//	@Transactional
+//	public void addTaskToProject() {
+//		projectRepository.addTaskToProject(10003L, new Task("Task 3"));
+//		Project project = projectRepository.findById(10003L);
+//		List<Task> tasks = project.getTasks();
+//		int totalTasks = 0;
+//		for (Task task:tasks) {
+//			Logger.info("Task - " + task.getName());
+//			totalTasks++;
+//		}
+//		assertEquals(3, totalTasks );
+//		
+//	}
 }

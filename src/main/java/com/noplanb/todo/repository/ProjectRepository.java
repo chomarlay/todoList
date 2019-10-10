@@ -34,11 +34,11 @@ public class ProjectRepository {
 		return project;
 	}
 	
-	public void addTaskToProject (Long projectId, Task task) {
-		Project project = findById(projectId);
-		project.addTask(task);
-		task.setProject(project);
-		em.persist(task);
-	}
+//	public void addTaskToProject (Long projectId, Task task) {
+//		Project project = findById(projectId);
+//		project.addTask(task);
+//		task.setProject(project);
+//		em.persist(task);
+//	}
 		
 }
