@@ -11,17 +11,17 @@ import com.noplanb.todo.entity.Project;
 import com.noplanb.todo.entity.Task;
 import com.noplanb.todo.exception.ProjectNotFoundException;
 import com.noplanb.todo.exception.TaskNotFoundException;
-import com.noplanb.todo.repository.ProjectSpringDataRepository;
-import com.noplanb.todo.repository.TaskSpringDataRepository;
+import com.noplanb.todo.repository.ProjectRepository;
+import com.noplanb.todo.repository.TaskRepository;
 
 @Service
 public class TodoService {
 
 	@Autowired
-	private ProjectSpringDataRepository projectRepository; 
+	private ProjectRepository projectRepository; 
 	
 	@Autowired
-	private TaskSpringDataRepository taskRepository;
+	private TaskRepository taskRepository;
 	
 	public Project findProjectById (Long projectId) {
 		Optional<Project> projectOptional = projectRepository.findById(projectId);

@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.noplanb.todo.audit.AuditorAwareImpl;
 import com.noplanb.todo.entity.Project;
 import com.noplanb.todo.entity.Task;
-import com.noplanb.todo.repository.ProjectSpringDataRepository;
+import com.noplanb.todo.repository.ProjectRepository;
 
 @SpringBootApplication
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
@@ -26,7 +26,7 @@ public class TodoApplication implements CommandLineRunner {
 	private static Logger Logger = LoggerFactory.getLogger(TodoApplication.class) ;
 	
 	@Autowired
-	ProjectSpringDataRepository projectRepository;
+	ProjectRepository projectRepository;
 	
     @Bean
     public AuditorAware<String> auditorAware() {

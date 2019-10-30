@@ -30,10 +30,10 @@ public class TodoProjectSpringDataRepositoryTests {
 	private static Logger Logger = LoggerFactory.getLogger(TodoProjectSpringDataRepositoryTests.class) ;
 
 	@Autowired
-	ProjectSpringDataRepository projectRepository;
+	ProjectRepository projectRepository;
 	
 	@Autowired
-	TaskSpringDataRepository taskRepository;
+	TaskRepository taskRepository;
 	
 	@Test
 	public void findProjectById() {
