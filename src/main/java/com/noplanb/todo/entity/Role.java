@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import org.hibernate.annotations.NaturalId;
 
-//@Entity
+@Entity
 //@NamedQuery(name = "Project.findWithTasks", 
 //	query = "select p from Project p join fetch p.tasks where p.id = :id")
 
